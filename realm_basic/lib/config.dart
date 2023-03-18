@@ -19,7 +19,7 @@ class RealmSyncronizer {
     add the YourService.instance.syncronize here 
     and do "hot-restart" not "hot-reload"
     */
-    await UserProfileService.instance.syncronize();
     await PostService.instance.syncronize();
+    await UserProfileService.instance.syncronize();
   }
 }

@@ -4,9 +4,14 @@ class RealmBaseService<T extends RealmObject> {
   late Realm realm;
 
   syncronize() async {
-    print("- $syncronize");
-    if (realm.subscriptions.isNotEmpty) return;
-    String queryAllName = "${this}Subscription";
+    print("syncronize running..");
+    // if (realm.subscriptions.isNotEmpty) {
+    //   print("Syncronize failed!");
+    //   return;
+    // }
+    // print("Syncronize success!");
+
+    String queryAllName = "${this}Subscription_${Uuid.v4()}";
     print("$queryAllName is created!");
     realm.subscriptions.update((mutableSubscriptions) {
       mutableSubscriptions.add(realm.all<T>(), name: queryAllName);

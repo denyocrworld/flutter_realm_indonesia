@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:realm_basic/core.dart';
-import 'package:realm_basic/service/post_service/post_service.dart';
-import '../controller/post_list_controller.dart';
 
 class PostListView extends StatefulWidget {
   const PostListView({Key? key}) : super(key: key);
@@ -27,7 +25,55 @@ class PostListView extends StatefulWidget {
           builder: (context, snapshot) {
             if (snapshot.data == null) return Container();
             var items = snapshot.data!.results;
-            return Text("${items.length}");
+            return ListView.builder(
+              itemCount: items.length,
+              physics: const ScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                var item = items[index];
+                return Card(
+                  child: ListTile(
+                    title: Text(item.title),
+                    subtitle: Text(
+                      item.content,
+                      maxLines: 3,
+                      style: const TextStyle(
+                        fontSize: 10.0,
+                      ),
+                    ),
+                    trailing: SizedBox(
+                      width: 60.0,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Get.to(PostFormView(
+                                item: item,
+                              ));
+                            },
+                            child: const Icon(
+                              Icons.edit,
+                              size: 16.0,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 4.0,
+                          ),
+                          InkWell(
+                            onTap: () => controller.doDelete(item),
+                            child: const Icon(
+                              Icons.delete,
+                              size: 16.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
           },
         ),
       ),

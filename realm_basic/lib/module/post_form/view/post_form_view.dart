@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:realm_basic/core.dart';
 
 class PostFormView extends StatefulWidget {
-  const PostFormView({Key? key}) : super(key: key);
+  final Post? item;
+  const PostFormView({
+    Key? key,
+    this.item,
+  }) : super(key: key);
 
   Widget build(context, PostFormController controller) {
     controller.view = this;
@@ -20,6 +24,7 @@ class PostFormView extends StatefulWidget {
               QTextField(
                 label: "Title",
                 validator: Validator.required,
+                value: controller.title,
                 onChanged: (value) {
                   controller.title = value;
                 },
@@ -27,6 +32,7 @@ class PostFormView extends StatefulWidget {
               QMemoField(
                 label: "Content",
                 validator: Validator.required,
+                value: controller.content,
                 onChanged: (value) {
                   controller.content = value;
                 },
@@ -48,6 +54,7 @@ class PostFormView extends StatefulWidget {
                     "value": "Tech",
                   }
                 ],
+                value: controller.category,
                 onChanged: (value, label) {
                   controller.category = value;
                 },

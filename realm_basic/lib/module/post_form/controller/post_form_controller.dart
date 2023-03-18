@@ -9,6 +9,11 @@ class PostFormController extends State<PostFormView> implements MvcController {
   @override
   void initState() {
     instance = this;
+    if (isEditMode) {
+      title = widget.item!.title;
+      content = widget.item!.content;
+      category = widget.item!.category;
+    }
     super.initState();
   }
 
@@ -18,18 +23,33 @@ class PostFormController extends State<PostFormView> implements MvcController {
   @override
   Widget build(BuildContext context) => widget.build(context, this);
 
+  bool get isEditMode {
+    return widget.item != null;
+  }
+
   String? title;
   String? content;
   String? category;
-  doSave() {
-    PostService.instance.add(Post(
-      ObjectId(),
-      AuthService.currentUser!.id,
-      title!,
-      content!,
-      category!,
-      DateTime.now(),
-    ));
+  doSave() async {
+    if (isEditMode) {
+      print("update ${widget.item!.id}");
+
+      PostService.instance.update(
+        widget.item!,
+        title: title,
+        content: content,
+        category: category,
+      );
+    } else {
+      PostService.instance.add(Post(
+        ObjectId(),
+        AuthService.currentUser!.id,
+        title!,
+        content!,
+        category!,
+        DateTime.now(),
+      ));
+    }
     Get.back();
   }
 }

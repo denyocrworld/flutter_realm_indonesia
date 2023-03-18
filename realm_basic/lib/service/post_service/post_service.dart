@@ -1,6 +1,5 @@
 import 'package:realm/realm.dart';
 import 'package:realm_basic/core.dart';
-import '../../model/post/post.dart';
 
 class PostService extends RealmBaseService<Post> {
   static PostService? _instance;
@@ -38,9 +37,16 @@ class PostService extends RealmBaseService<Post> {
   }
 
   @override
-  Future<void> update(Post item) async {
+  Future<void> update(
+    Post item, {
+    String? title,
+    String? content,
+    String? category,
+  }) async {
     realm.write(() {
-      item = item;
+      item.title = title ?? item.title;
+      item.content = content ?? item.content;
+      item.category = category ?? item.category;
     });
   }
 }
