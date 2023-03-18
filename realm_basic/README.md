@@ -55,7 +55,7 @@ realm.bat
 
 ## Cara membuat Service
 
-Silahkan copas contoh berikut dan sesuaikan modelnya!
+Silahkan copas contoh berikut dan sesuaikan!
 ```
 
 class PostService extends RealmBaseService<Post> {
