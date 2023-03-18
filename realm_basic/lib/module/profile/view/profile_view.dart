@@ -12,6 +12,19 @@ class ProfileView extends StatefulWidget {
         title: const Text("Profile"),
         actions: [
           IconButton(
+            onPressed: () async {
+              var users = UserProfileService.instance.get();
+              for (var user in users) {
+                UserProfileService.instance.delete(user as UserProfile);
+              }
+              controller.doLogout();
+            },
+            icon: const Icon(
+              Icons.refresh,
+              size: 24.0,
+            ),
+          ),
+          IconButton(
             onPressed: () => controller.doLogout(),
             icon: const Icon(
               Icons.logout,

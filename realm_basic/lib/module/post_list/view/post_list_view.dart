@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realm_basic/core.dart';
+import 'package:realm_basic/service/post_service/post_service.dart';
 import '../controller/post_list_controller.dart';
 
 class PostListView extends StatefulWidget {
@@ -15,16 +16,19 @@ class PostListView extends StatefulWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {
-          //
+        onPressed: () async {
+          Get.to(const PostFormView());
         },
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: const [],
-          ),
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        child: StreamBuilder(
+          stream: PostService.instance.snapshot(),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) return Container();
+            var items = snapshot.data!.results;
+            return Text("${items.length}");
+          },
         ),
       ),
     );

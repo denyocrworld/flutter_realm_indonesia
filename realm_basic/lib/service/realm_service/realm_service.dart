@@ -24,6 +24,7 @@ class RealmService {
     if (AuthService.currentUser == null) return;
     syncronized = false;
     await RealmSyncronizer.syncronize();
+    print("syncronized!!!");
     syncronized = true;
   }
 }

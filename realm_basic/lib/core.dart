@@ -3,6 +3,7 @@ We believe, the class name must be unique.
 If there is a conflicting class name in this file,
 it means you have to rename it to something more unique.
 */
+export 'package:realm_basic/model/post/post.dart';
 export 'package:realm_basic/model/user_profile/user_profile.dart';
 export 'package:realm_basic/module/dashboard/controller/dashboard_controller.dart';
 export 'package:realm_basic/module/dashboard/view/dashboard_view.dart';
@@ -12,11 +13,14 @@ export 'package:realm_basic/module/login/controller/login_controller.dart';
 export 'package:realm_basic/module/login/view/login_view.dart';
 export 'package:realm_basic/module/main_navigation/controller/main_navigation_controller.dart';
 export 'package:realm_basic/module/main_navigation/view/main_navigation_view.dart';
+export 'package:realm_basic/module/post_form/controller/post_form_controller.dart';
+export 'package:realm_basic/module/post_form/view/post_form_view.dart';
 export 'package:realm_basic/module/post_list/controller/post_list_controller.dart';
 export 'package:realm_basic/module/post_list/view/post_list_view.dart';
 export 'package:realm_basic/module/profile/controller/profile_controller.dart';
 export 'package:realm_basic/module/profile/view/profile_view.dart';
 export 'package:realm_basic/service/auth_service/auth_service.dart';
+export 'package:realm_basic/service/post_service/post_service.dart';
 export 'package:realm_basic/service/realm_base_service/realm_base_service.dart';
 export 'package:realm_basic/service/realm_service/realm_service.dart';
 export 'package:realm_basic/service/user_profile_service/user_profile_service.dart';

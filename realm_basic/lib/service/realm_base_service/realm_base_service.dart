@@ -1,5 +1,4 @@
 import 'package:realm/realm.dart';
-import '../../model/user_profile/user_profile.dart';
 
 class RealmBaseService<T extends RealmObject> {
   late Realm realm;
@@ -26,20 +25,20 @@ class RealmBaseService<T extends RealmObject> {
     return realm.query<T>("TRUEPREDICATE SORT(_id ASC)");
   }
 
-  add(UserProfile item) async {
+  add(T item) async {
     realm.write(() {
       realm.add(item);
     });
     print("New user created!");
   }
 
-  Future<void> update(UserProfile item) async {
+  Future<void> update(T item) async {
     realm.write(() {
       item = item;
     });
   }
 
-  delete(UserProfile item) {
+  delete(T item) {
     realm.write(() async {
       realm.delete(item);
     });

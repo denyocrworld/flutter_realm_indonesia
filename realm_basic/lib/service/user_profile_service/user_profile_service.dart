@@ -1,6 +1,5 @@
 import 'package:realm/realm.dart';
 import 'package:realm_basic/core.dart';
-import '../realm_base_service/realm_base_service.dart';
 
 class UserProfileService extends RealmBaseService<UserProfile> {
   static UserProfileService? _instance;

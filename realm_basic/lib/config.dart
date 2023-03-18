@@ -1,3 +1,4 @@
+import 'package:realm_basic/service/post_service/post_service.dart';
 import 'package:realm_basic/service/user_profile_service/user_profile_service.dart';
 
 class Config {
@@ -19,5 +20,6 @@ class RealmSyncronizer {
     and do "hot-restart" not "hot-reload"
     */
     await UserProfileService.instance.syncronize();
+    await PostService.instance.syncronize();
   }
 }
