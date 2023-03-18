@@ -12,6 +12,12 @@ class Config {
 
 class RealmSyncronizer {
   static syncronize() async {
+    /*
+    TODO: 
+    Every time you create a RealmService, 
+    add the YourService.instance.syncronize here 
+    and do "hot-restart" not "hot-reload"
+    */
     await UserProfileService.instance.syncronize();
   }
 }
