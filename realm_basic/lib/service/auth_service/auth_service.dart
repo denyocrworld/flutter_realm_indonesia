@@ -17,6 +17,9 @@ class AuthService {
         Credentials.emailPassword(email, password),
       );
 
+      await RealmService.syncronizeAll();
+      await UserProfileService.instance.initUserProfile();
+
       return true;
     } on Exception catch (err) {
       print("$err");

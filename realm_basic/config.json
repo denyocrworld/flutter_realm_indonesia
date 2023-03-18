@@ -4,6 +4,8 @@
         "login",
         "main_navigation",
         "dashboard",
-        "profile"
+        "profile",
+        "post_list",
+        "favorite_list"
     ]
 }

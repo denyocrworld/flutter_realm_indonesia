@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:realm_basic/core.dart';
-import '../controller/profile_controller.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -11,14 +10,62 @@ class ProfileView extends StatefulWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile"),
-        actions: const [],
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: const [],
+        actions: [
+          IconButton(
+            onPressed: () => controller.doLogout(),
+            icon: const Icon(
+              Icons.logout,
+              size: 24.0,
+            ),
           ),
+        ],
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: StreamBuilder(
+          stream: UserProfileService.instance.currentUserSnapshot(),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) return Container();
+            if (snapshot.data!.results.isEmpty) return Container();
+            var data = snapshot.data?.results.first;
+
+            return Column(
+              children: [
+                QImagePicker(
+                  label: "Photo",
+                  hint: "Your photo",
+                  validator: Validator.required,
+                  value: data?.photo,
+                  onChanged: (value) {
+                    UserProfileService.instance.updateProfile(
+                      photo: value,
+                    );
+                  },
+                ),
+                QTextField(
+                  label: "Name",
+                  hint: "Your email",
+                  validator: Validator.required,
+                  suffixIcon: Icons.abc,
+                  value: data?.name,
+                  onChanged: (value) {
+                    UserProfileService.instance.updateProfile(
+                      name: value,
+                    );
+                  },
+                ),
+                QTextField(
+                  label: "Email",
+                  hint: "Your email",
+                  validator: Validator.email,
+                  suffixIcon: Icons.email,
+                  value: data?.email,
+                  enabled: false,
+                  onChanged: (value) {},
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

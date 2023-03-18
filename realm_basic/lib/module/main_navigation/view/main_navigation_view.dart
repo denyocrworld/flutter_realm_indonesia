@@ -13,15 +13,11 @@ class MainNavigationView extends StatefulWidget {
       child: Scaffold(
         body: IndexedStack(
           index: controller.selectedIndex,
-          children: [
-            const DashboardView(),
-            Container(
-              color: Colors.green,
-            ),
-            Container(
-              color: Colors.blue,
-            ),
-            const ProfileView(),
+          children: const [
+            DashboardView(),
+            PostListView(),
+            FavoriteListView(),
+            ProfileView(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -38,7 +34,7 @@ class MainNavigationView extends StatefulWidget {
               icon: Icon(
                 Icons.list,
               ),
-              label: "Order",
+              label: "Posts",
             ),
             BottomNavigationBarItem(
               icon: Icon(

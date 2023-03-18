@@ -14,7 +14,7 @@ class LoginView extends StatefulWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                  "https://images.unsplash.com/photo-1536520002442-39764a41e987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+                  "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
                 ),
                 fit: BoxFit.cover,
               ),
@@ -46,16 +46,9 @@ class LoginView extends StatefulWidget {
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
                   Text(
-                    "Jessica",
+                    "Ciko",
                     style: GoogleFonts.satisfy(
                       fontSize: 50.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "Barbershop's",
-                    style: GoogleFonts.satisfy(
-                      fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

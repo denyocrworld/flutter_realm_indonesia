@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
 import 'package:realm_basic/config.dart';
+import 'package:realm_basic/core.dart';
 
 class RealmService {
   static late App app;
@@ -20,6 +21,7 @@ class RealmService {
 
   static bool syncronized = false;
   static Future syncronizeAll() async {
+    if (AuthService.currentUser == null) return;
     syncronized = false;
     await RealmSyncronizer.syncronize();
     syncronized = true;

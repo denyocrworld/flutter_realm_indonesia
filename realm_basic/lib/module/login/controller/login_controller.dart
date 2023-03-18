@@ -32,6 +32,8 @@ class LoginController extends State<LoginView> implements MvcController {
       return;
     }
 
+    await RealmService.syncronizeAll();
+
     hideLoading();
     Get.offAll(const MainNavigationView());
   }
@@ -47,6 +49,7 @@ class LoginController extends State<LoginView> implements MvcController {
         email: email,
         password: password,
       );
+      await RealmService.syncronizeAll();
       hideLoading();
       Get.offAll(const MainNavigationView());
     } on Exception {

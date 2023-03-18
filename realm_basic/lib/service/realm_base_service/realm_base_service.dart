@@ -1,15 +1,8 @@
 import 'package:realm/realm.dart';
 import '../../model/user_profile/user_profile.dart';
-import '../auth_service/auth_service.dart';
 
 class RealmBaseService<T extends RealmObject> {
   late Realm realm;
-
-  RealmBaseService() {
-    realm = Realm(Configuration.flexibleSync(AuthService.currentUser!, [
-      UserProfile.schema,
-    ]));
-  }
 
   syncronize() async {
     print("- $syncronize");
@@ -24,6 +17,13 @@ class RealmBaseService<T extends RealmObject> {
 
   Stream<RealmResultsChanges<T>> snapshot() {
     return realm.query<T>("TRUEPREDICATE SORT(_id ASC)").changes;
+  }
+
+  RealmResults get({
+    String? query,
+  }) {
+    if (query != null) return realm.query<T>(query);
+    return realm.query<T>("TRUEPREDICATE SORT(_id ASC)");
   }
 
   add(UserProfile item) async {
